@@ -22,7 +22,7 @@ public class BallController : MonoBehaviour
         if (ignoreNextCollision)
             return;
 
-        Debug.Log("Ball has collided with the helix");
+        //Debug.Log("Ball has collided with the helix");
 
         rb.velocity = Vector3.zero;
         rb.AddForce(Vector3.up * impulseForce, ForceMode.Impulse); // add instant force to the ball
@@ -30,7 +30,9 @@ public class BallController : MonoBehaviour
         ignoreNextCollision = true;
         Invoke("AllowCollision", .2f);
 
-
+        //test code to add score when ball touches something
+        GameManager.singleton.AddScore(1);
+        Debug.Log(GameManager.singleton.score);
     }
 
     private void AllowCollision()

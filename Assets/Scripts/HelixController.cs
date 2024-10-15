@@ -6,13 +6,13 @@ public class HelixController : MonoBehaviour
 {
     //know last screen tap
     private Vector2 lastTapPosition;
-    private Vector3 startRoatation;
+    private Vector3 startRotation;
 
 
     // Start is called before the first frame update
     void Awake()
     {
-        startRoatation = transform.localEulerAngles;
+        startRotation = transform.localEulerAngles;
     }
 
     // Update is called once per frame
