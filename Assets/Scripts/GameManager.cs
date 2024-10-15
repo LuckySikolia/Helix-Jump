@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //retrieve the stored value
+        bestScore = PlayerPrefs.GetInt("HighScore");
     }
 
     public void NextLevel()
@@ -40,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
             bestScore = score;
             //score high store / best score in player prefs
-
+            PlayerPrefs.SetInt("HighScore", score);
             
         }
     }
