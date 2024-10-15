@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -27,12 +28,18 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-
+        Debug.Log("Next Level called");
     }
 
     public void RestartLevel()
     {
-
+        Debug.Log("Game Over");
+        //show ads here
+        //reset score
+        singleton.score = 0;
+        //reset the ball
+        FindObjectOfType<BallController>().ResetBall();
+        //reload the stage
     }
 
     public void AddScore(int scoreToAdd)
