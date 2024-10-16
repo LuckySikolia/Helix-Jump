@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         textBest.text = "Best: " + GameManager.singleton.bestScore;
-        textScore.text = "Score: " + GameManager.singleton.score;
+        textScore.text = GameManager.singleton.score.ToString();
     }
 
 
