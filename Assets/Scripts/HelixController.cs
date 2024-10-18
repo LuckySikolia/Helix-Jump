@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HelixController : MonoBehaviour
 {
+    
+
+
     //know last screen tap
     private Vector2 lastTapPosition;
     private Vector3 startRotation;
@@ -20,7 +24,8 @@ public class HelixController : MonoBehaviour
     private List<GameObject> spawnedLevels = new List<GameObject>();
 
 
-
+    // Add a reference to the background image ui
+    public Image backgroundImage;
 
 
     // Start is called before the first frame update
@@ -74,7 +79,14 @@ public class HelixController : MonoBehaviour
         }
 
         //change background colour of main camera
-        Camera.main.backgroundColor = allStages[stageNumber].stageBackgroundColor;
+        //Camera.main.backgroundColor = allStages[stageNumber].stageBackgroundColor;
+
+
+        // Change background image
+        if (stage.stageBackgroundImage != null)
+        {
+            backgroundImage.sprite = stage.stageBackgroundImage;
+        }
 
         //change color of ball in stage
         FindObjectOfType<BallController>().GetComponent<Renderer>().material.color = allStages[stageNumber].stageBallColor;

@@ -27,7 +27,7 @@ public class BallController : MonoBehaviour
         {
             if (!collision.transform.GetComponent<Goal>())
             {
-                Destroy(collision.transform.parent.gameObject);
+                Destroy(collision.transform.parent.gameObject, 0.3f);
                 Debug.Log("Destory platform");
             }
         }
