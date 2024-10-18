@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: 
   stageBackgroundImage: {fileID: 21300000, guid: ed31902f3c95c0643b2f160a7c2a0222, type: 3}
-  stageLevelPartColor: {r: 1, g: 0.7372549, b: 0.9234725, a: 1}
-  stageBallColor: {r: 0.57924527, g: 1, b: 0.73628503, a: 1}
+  stageLevelPartColor: {r: 0.2901961, g: 0.42745098, b: 0.5176471, a: 0.87058824}
+  stageBallColor: {r: 0.59607846, g: 0.38431373, b: 0.3137255, a: 1}
   levels:
-  - partCount: 11
-    deathPartCount: 0
   - partCount: 10
-    deathPartCount: 0
-  - partCount: 11
-    deathPartCount: 0
-  - partCount: 9
-    deathPartCount: 0
-  - partCount: 10
-    deathPartCount: 0
+    deathPartCount: 4
   - partCount: 10
     deathPartCount: 0
   - partCount: 9
-    deathPartCount: 0
-  - partCount: 10
-    deathPartCount: 0
-  - partCount: 10
-    deathPartCount: 0
-  - partCount: 10
-    deathPartCount: 0
+    deathPartCount: 4
   - partCount: 9
+    deathPartCount: 1
+  - partCount: 8
+    deathPartCount: 4
+  - partCount: 8
     deathPartCount: 0
+  - partCount: 7
+    deathPartCount: 2
+  - partCount: 7
+    deathPartCount: 1
+  - partCount: 8
+    deathPartCount: 3
   - partCount: 9
-    deathPartCount: 0
+    deathPartCount: 3
+  - partCount: 10
+    deathPartCount: 2
+  - partCount: 10
+    deathPartCount: 2

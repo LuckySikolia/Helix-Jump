@@ -18,11 +18,11 @@ public class Level
 [CreateAssetMenu(fileName ="New Stage")]
 public class Stage : ScriptableObject
 {
-    //public Color stageBackgroundColor = Color.white;
-    //changing background to image instead of colour
     public Sprite stageBackgroundImage;
     public Color stageLevelPartColor = Color.white;
     public Color stageBallColor = Color.white;
+
+    
 
     //list of levels
     public List<Level> levels = new List<Level>();

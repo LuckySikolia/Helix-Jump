@@ -27,6 +27,9 @@ public class HelixController : MonoBehaviour
     // Add a reference to the background image ui
     public Image backgroundImage;
 
+    //add deathplay sfx
+    public AudioClip witchScreamClip;  // Assign this in the Unity Inspector
+
 
     // Start is called before the first frame update
     void Awake()
@@ -91,10 +94,13 @@ public class HelixController : MonoBehaviour
         //change color of ball in stage
         FindObjectOfType<BallController>().GetComponent<Renderer>().material.color = allStages[stageNumber].stageBallColor;
 
+       
+
+
         //reset helix rotation
         transform.localEulerAngles = startRotation;
 
-        //destro old levels if there are any
+        //destroy old levels if there are any
         foreach(GameObject go in spawnedLevels)
         {
             Destroy(go);
@@ -151,8 +157,25 @@ public class HelixController : MonoBehaviour
                 GameObject randomPart = leftParts[(Random.Range(0, leftParts.Count))];
                 if (!deathParts.Contains(randomPart))
                 {
-                    randomPart.gameObject.AddComponent<DeathPart>();
+                    //randomPart.gameObject.AddComponent<DeathPart>();
+                    //deathParts.Add(randomPart);
+
+
+                    // Add the DeathPart script
+                    DeathPart deathPart = randomPart.gameObject.AddComponent<DeathPart>();
+
+                    // Add AudioSource and assign the witch scream sound
+                    AudioSource audioSource = randomPart.gameObject.AddComponent<AudioSource>();
+                    audioSource.clip = witchScreamClip;  // Assign the witch scream clip from HelixController
+                    audioSource.playOnAwake = false;     // Ensure it doesn't play immediately
+
+                    // Add the created part to the list of death parts
                     deathParts.Add(randomPart);
+
+
+                    Debug.Log("Play sound 1");
+
+
                 }
 
            }
