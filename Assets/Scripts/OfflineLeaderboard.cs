@@ -74,6 +74,16 @@ public class OfflineLeaderboard : MonoBehaviour
             leaderboardEntries = JsonUtility.FromJson<LeaderboardWrapper>(json).leaderboardEntries;
         }
     }
+
+    public void ResetAllScores()
+    {
+        leaderboardEntries.Clear(); // Clear the list of leaderboard entries
+
+        PlayerPrefs.DeleteKey(LeaderboardKey); // Remove the stored leaderboard from PlayerPrefs
+        PlayerPrefs.Save(); // Save the changes
+
+        Debug.Log("1.All offline leaderboard scores have been reset."); // Log confirmation
+    }
 }
 
 

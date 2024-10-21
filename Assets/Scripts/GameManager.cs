@@ -124,28 +124,12 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
         // Start the coroutine to reset the game after a delay
         StartCoroutine(RestartLevelCoroutine());
 
-
-        ////reset score
-        //singleton.score = 0;
-        ////reset the ball
-        //FindObjectOfType<BallController>().ResetBall();
-        ////reload the stage
-        //FindObjectOfType<HelixController>().LoadStage(currentStage);
     }
 
     private IEnumerator RestartLevelCoroutine()
     {
         // Wait for a few seconds to allow the game over screen and ads to display
         yield return new WaitForSeconds(3f); // Adjust the duration as necessary
-
-        //// Reset score
-        //singleton.score = 0;
-
-        //// Reset the ball
-        //FindObjectOfType<BallController>().ResetBall();
-
-        //// Reload the stage
-        //FindObjectOfType<HelixController>().LoadStage(currentStage);
     }
 
     public void RestartLevelMethod()
@@ -225,5 +209,17 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
     public void ResumeGame()
     {
         Time.timeScale = 1; // Resume the game
+    }
+
+
+    public void ResetAllBestScores()
+    {
+        bestScore = 0; // Set the best score to zero
+        PlayerPrefs.SetInt("HighScore", bestScore); // Reset the stored high score in PlayerPrefs
+        PlayerPrefs.Save(); // Save the changes
+
+        // Reset other scores if you have more
+        // PlayerPrefs.SetInt("OtherScore", 0);
+        Debug.Log("All best scores have been reset to zero."); // Optional: Log for confirmation
     }
 }
