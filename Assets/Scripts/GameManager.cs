@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
 
     private string _adUnitId = "Interstitial_Android"; // Update this to your actual Ad Unit ID
 
+    //references for leaderboard
+    public OfflineLeaderboard LeaderboardManager;
+    public LeaderboardDisplay leaderboardDisplay;
 
 
     private void Awake()
@@ -107,14 +110,67 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
             Advertisement.Show(_adUnitId, this);
         }
 
+        //add the score to the leaderboard
+        //replace player with the actual player name
+        //TODO! dynamically set the player name
+        LeaderboardManager.AddNewScore("Player", bestScore);
+        // Update the UI to reflect new scores
+        leaderboardDisplay.UpdateLeaderboardUI();
+        // Show the leaderboard UI
+        if (leaderboardDisplay != null)
+        {
+            leaderboardDisplay.ShowLeaderboard(); // Call the method to show the leaderboard
+        }
+        // Start the coroutine to reset the game after a delay
+        StartCoroutine(RestartLevelCoroutine());
 
-        //reset score
+
+        ////reset score
+        //singleton.score = 0;
+        ////reset the ball
+        //FindObjectOfType<BallController>().ResetBall();
+        ////reload the stage
+        //FindObjectOfType<HelixController>().LoadStage(currentStage);
+    }
+
+    private IEnumerator RestartLevelCoroutine()
+    {
+        // Wait for a few seconds to allow the game over screen and ads to display
+        yield return new WaitForSeconds(3f); // Adjust the duration as necessary
+
+        //// Reset score
+        //singleton.score = 0;
+
+        //// Reset the ball
+        //FindObjectOfType<BallController>().ResetBall();
+
+        //// Reload the stage
+        //FindObjectOfType<HelixController>().LoadStage(currentStage);
+    }
+
+    public void RestartLevelMethod()
+    {
+        Debug.Log("Restarting Level...");
+
+        // Hide the leaderboard when restarting
+        if (leaderboardDisplay != null)
+        {
+            leaderboardDisplay.HideLeaderboard(); // Call the method to hide the leaderboard
+        }
+
+        // Reset score and reload the stage
         singleton.score = 0;
-        //reset the ball
         FindObjectOfType<BallController>().ResetBall();
-        //reload the stage
         FindObjectOfType<HelixController>().LoadStage(currentStage);
     }
+
+
+
+
+
+
+
+
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
@@ -150,10 +206,24 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
         {
             bestScore = score;
             //score high store / best score in player prefs
-            PlayerPrefs.SetInt("HighScore", score);
+            //PlayerPrefs.SetInt("HighScore", bestScore);
             
         }
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
 
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0; // Pause the game
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1; // Resume the game
+    }
 }

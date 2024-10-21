@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    //oncle goal is touched call next level
+    //once goal is touched call next level
     private void OnCollisionEnter(Collision collision)
     {
         GameManager.singleton.NextLevel();
